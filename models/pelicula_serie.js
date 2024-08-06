@@ -40,6 +40,9 @@ const PeliculaSerie = sequelize.define('PeliculaSerie', {
   resumen: {
     type: DataTypes.TEXT,
   },
+  reparto: {
+    type: DataTypes.STRING,
+  },
   duracion: {
     type: DataTypes.STRING,
   },
@@ -49,6 +52,7 @@ const PeliculaSerie = sequelize.define('PeliculaSerie', {
   trailer: {
     type: DataTypes.STRING,
   },
+}, {
+  timestamps: false // Desactiva los campos createdAt y updatedAt
 });
-
 module.exports = PeliculaSerie;

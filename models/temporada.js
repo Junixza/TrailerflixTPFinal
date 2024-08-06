@@ -21,6 +21,7 @@ const Temporada = sequelize.define('Temporada', {
       key: 'id',
     },
   },
+}, {
+  timestamps: false // Desactiva los campos createdAt y updatedAt
 });
-
 module.exports = Temporada;

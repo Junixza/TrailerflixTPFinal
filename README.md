@@ -1,7 +1,4 @@
-Pre-Entrega 3 🎯
 
-La Pre-entrega 3 requerirá que elabores con tu equipo un proyecto utilizando Node.js y MySQL, acompañado de una documentación adecuada. A continuación, se detalla una 🚦Guía a seguir:
-Diseño del Modelo de Datos
 1. Análisis del archivo trailerflix.json:
 
     Revisa el contenido del archivo trailerflix.json que se utilizó en las primera entrega.
@@ -95,8 +92,3 @@ Herramientas de desarrollo que se utilzaron
 ├── pg-hstore
 ├── pg
 └── sequelize
-
-Integrantes del Grupo 7 
-|__ Macarena Ferro
-|__ Jorgelina Sigal
-|__ Junixza Briceño

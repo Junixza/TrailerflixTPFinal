@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de Búsqueda</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+    <h1>Resultados de la Búsqueda</h1>
+    
+    <% if (tipo === 'actor') { %>
+        <% resultados.forEach(actor => { %>
+            <div>
+                <h2><%= actor.nombre %></h2>
+                <p><%= actor.biografia %></p>
+                <h3>Trabajos:</h3>
+                <% actor.Repartos.forEach(reparto => { %>
+                    <div>
+                        <h4><%= reparto.PeliculaSerie.titulo %></h4>
+                        <img src="<%= reparto.PeliculaSerie.poster %>" alt="Poster de <%= reparto.PeliculaSerie.titulo %>">
+                        <p>Categoria: <%= reparto.PeliculaSerie.categoria_id %>, Genero: <%= reparto.PeliculaSerie.genero_id %></p>
+                    </div>
+                <% }); %>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <% resultados.forEach(item => { %>
+            <div class="card">
+                <h2><%= item.titulo %></h2>
+                <img src="<%= item.poster %>" alt="Poster de <%= item.titulo %>">
+                <p><%= item.resumen %></p>
+                <% if (item.trailer) { %>
+                    <iframe width="560" height="315" src="<%= item.trailer %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <% } %>
+            </div>
+        <% }); %>
+    <% } %>
+
+    <a href="/index.html">Volver al inicio</a>
+</body>
+</html>

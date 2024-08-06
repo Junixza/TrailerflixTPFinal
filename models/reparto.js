@@ -26,6 +26,7 @@ const Reparto = sequelize.define('Reparto', {
       key: 'id',
     },
   },
+}, {
+  timestamps: false // Desactiva los campos createdAt y updatedAt
 });
-
 module.exports = Reparto;

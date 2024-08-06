@@ -16,6 +16,7 @@ const Actor = sequelize.define('Actor', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+}, {
+  timestamps: false // Desactiva los campos createdAt y updatedAt
 });
-
 module.exports = Actor;

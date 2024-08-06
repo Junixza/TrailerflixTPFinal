@@ -1,40 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const { Serie, Elenco } = require('../models'); // Asegúrate de importar los modelos necesarios
+const { PeliculaSerie } = require('../models'); // Asegúrate de que la importación sea correcta
 
-// Obtener todas las series
-router.get('/', async (req, res) => {
+console.log(PeliculaSerie)
+// Obtener todas las películas
+router.get('/series', async (req, res) => {
     try {
-        const series = await Serie.findAll();
-        res.json(series);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Obtener una serie por ID
-router.get('/:id', async (req, res) => {
-    try {
-        const serie = await Serie.findByPk(req.params.id, {
-            include: [Elenco] // Incluir el elenco si es necesario
+        // Buscar películas donde el campo 'temporadas' es null o vacío
+        const series = await PeliculaSerie.findAll({
+            where: {
+                temporadas: {
+                    [Op.gt]: 0
+                }
+            }
         });
-        if (serie) {
-            res.json(serie);
-        } else {
-            res.status(404).json({ error: 'Serie no encontrada' });
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
 
-// Obtener solo series
-router.get('/solo', async (req, res) => {
-    try {
-        const series = await Serie.findAll({ where: { categoria: 'Serie' } });
-        res.json(series);
+        // Renderizar la vista y pasar las películas
+        res.render('Pelicula', { series });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error al obtener las películas:', error);
+        res.status(500).send('Error al obtener las películas');
     }
 });
 

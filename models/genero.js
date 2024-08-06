@@ -12,6 +12,7 @@ const Genero = sequelize.define('Genero', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+}, {
+  timestamps: false // Desactiva los campos createdAt y updatedAt
 });
-
 module.exports = Genero;

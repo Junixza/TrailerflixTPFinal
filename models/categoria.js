@@ -12,6 +12,8 @@ const Categoria = sequelize.define('Categoria', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+}, {
+  timestamps: false // Desactiva los campos createdAt y updatedAt
 });
 
 module.exports = Categoria;

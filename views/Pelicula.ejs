@@ -1,35 +1,24 @@
+<!-- views/Pelicula.ejs -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Películas</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-    </style>
+    <title>Películas</title>
+    <link rel="stylesheet" href="/css/cards.css">
 </head>
-<body>
-    <h1>Lista de Películas</h1>
-    <ul>
+<body class="background-black">
+    <h1 class="text-content">Películas</h1>
+    <div class="card-container">
         <% peliculas.forEach(pelicula => { %>
-            <li>
+            <div class="card">
+                <div class="trailer-container">
+                    <iframe width="300" height="200" src="<%= pelicula.trailer %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
                 <h2><%= pelicula.titulo %></h2>
-                <img src="<%= pelicula.poster %>" alt="<%= pelicula.titulo %>" style="width:150px;">
-                <p><strong>Resumen:</strong> <%= pelicula.resumen %></p>
-                <p><strong>Duración:</strong> <%= pelicula.duracion %></p>
-                <p><strong>Temporadas:</strong> <%= pelicula.temporadas %></p>
-                <p><strong>Trailer:</strong> <a href="<%= pelicula.trailer %>" target="_blank">Ver Trailer</a></p>
-            </li>
+                <p>Duración: <%= pelicula.duracion %></p>
+            </div>
         <% }) %>
-    </ul>
+    </div>
 </body>
 </html>

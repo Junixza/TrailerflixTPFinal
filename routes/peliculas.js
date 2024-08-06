@@ -1,40 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const { Pelicula, Elenco } = require('../models'); // Asegúrate de importar los modelos necesarios
+const { PeliculaSerie } = require('../models'); // Asegúrate de que la importación sea correcta
 
+console.log(PeliculaSerie)
 // Obtener todas las películas
 router.get('/peliculas', async (req, res) => {
     try {
-        const peliculas = await Pelicula.findAll();
-        res.json(peliculas);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Obtener una película por ID
-router.get('/:id', async (req, res) => {
-    try {
-        const pelicula = await Pelicula.findByPk(req.params.id, {
-            include: [Elenco] // Incluir el elenco si es necesario
+        // Buscar películas donde el campo 'temporadas' es null o vacío
+        const peliculas = await PeliculaSerie.findAll({
+            where: {
+                temporadas: {
+                    [Op.or]: [null, ''] // Filtrar por temporadas que sean null o vacío
+                }
+            }
         });
-        if (pelicula) {
-            res.json(pelicula);
-        } else {
-            res.status(404).json({ error: 'Película no encontrada' });
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
 
-// Obtener solo películas
-router.get('/solo', async (req, res) => {
-    try {
-        const peliculas = await Pelicula.findAll({ where: { categoria: 'Película' } });
-        res.json(peliculas);
+        // Renderizar la vista y pasar las películas
+        res.render('Pelicula', { peliculas });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error al obtener las películas:', error);
+        res.status(500).send('Error al obtener las películas');
     }
 });
 
